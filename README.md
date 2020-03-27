@@ -49,6 +49,7 @@ This method was not about producing the likelihood of a team winning a cricket m
 To display these results I built an interactive application using dash and deployed to AWS Elastic Beanstalk. The app has two functions, first it displays how my method would have fared during any of the 4100 games I used in the study. Second, it allows you to enter current match information and receive the predicted score and likelihood of winning. To be of most use, it is important to copare the change in likelihood over to over.
 
 App can be found here: http://tysondashboard-dev.eu-west-2.elasticbeanstalk.com/
+Code for app can be found in application.py
 
 # Conclusion
 

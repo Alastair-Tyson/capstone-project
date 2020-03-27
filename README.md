@@ -4,7 +4,7 @@ Cricket is a sport of winners and losers, but how can you quantify how well a te
 
 In this project I aimed to produce a method that will give insight into how much a batting team has improved their chances of winning by reviewing their performance in a given over. I intended to predict the end of innings score using a regression model and then find the likelihood of it being a winning score using a classification model. Finally, I would display these results in an online app. My sole focus would be Twenty over cricket.
 
-Data Collection and EDA:
+# Data Collection and EDA:
 
 I used ESPN cricinfo as my data source and built a web scraper using BeautifulSoup and Selenium to collect the data. I wanted the score at the end of each over as well an info about where and when the game was played. As cricinfo provides ball by ball text commentary it was the ideal data source. 
 
@@ -22,7 +22,7 @@ A Twenty20 cricket match has two innings: 1st a team will bat setting a total, n
 
 A benfit of keeping the innings seperate is that it reduced the need for interaction features between innings and score. I extended this further by choosing to build a model for each over of an innings, as again it would remove the need for interaction features. This meant overall that I would have 42 regression models and 42 classification models- one for the end of each over plus two for the start of each innings. 
 
-Regression:
+# Regression:
 
 The first part of my method was to predict the score at the end of a batting team's innings. This should be possible from any point of a game, including the start. As said previously, I wanted to make a model for each over of each innings to reduce the amount of features I would need to use. The trade off would be that overs earlier in an innings would be less accurate than those later. For consistency, each model of an innings would use the same technique and features.
 
@@ -32,7 +32,7 @@ The second innings models were different on two counts. Firstly, there was an ad
 
 For both innings the models improved accuracy the closer you got to the end. This was to be expected. With these regression models built, I then started the process of classification.
 
-Classification:
+# Classification:
 
 For each predicted score I wanted to know what the likelihood was of it being a winning score. To do this I would build a classification model (with match outcome as a target) for each over (similar to the regression stage) and use predict_proba to return the likelihood of it being predicted a win. 
 
@@ -40,12 +40,16 @@ For features, I used the same time and geographic features as before but instead
 
 In both 1st and 2nd innings the basic Logistic Regression technique proved to be the most appropriate. Again it performed just as well as more robust ensemble methods and was much simpler for interpretation.  Again, the accuracy scores (precision and recall also) improved the closer you got to the end of the game.
 
-Interpretation of method:
+# Interpretation of method:
 
 This method was not about producing the likelihood of a team winning a cricket match, but identifying if a batting team's most recent over had improved their chances of winning. In terms of use, you need to compare the likelihood of being predicted a win from over to over. If there is an increase you can be sure the batting team has improved their chances of winning. 
 
-Application:
+# Application:
 
 To display these results I built an interactive application using dash and deployed to AWS Elastic Beanstalk. The app has two functions, first it displays how my method would have fared during any of the 4100 games I used in the study. Second, it allows you to enter current match information and receive the predicted score and likelihood of winning. To be of most use, it is important to copare the change in likelihood over to over.
 
 App can be found here: http://tysondashboard-dev.eu-west-2.elasticbeanstalk.com/
+
+# Conclusion
+
+My aim was to build a method that would indicate if a batting team had improved their chances of winning a Twenty20 game. By building a pipeline which predicted the final innings score then calculate the likelihood of it being a winning score I was able to achieve this. By comparing the win likelihood over to over, a team's performance in an over can be evaluated against their chances of winning.
